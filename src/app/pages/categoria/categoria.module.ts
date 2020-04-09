@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {CategoriaPesquisaComponent} from './categoria-pesquisa/categoria-pesquisa.component';
+import {CategoriaPesquisaComponent, NgbdSortableHeader} from './categoria-pesquisa/categoria-pesquisa.component';
 import {CategoriaRoutingModule} from './categoria-routing.module';
 import {CategoriaService} from './categoria.service';
+
 
 @NgModule({
   imports: [
@@ -11,12 +12,14 @@ import {CategoriaService} from './categoria.service';
     CategoriaRoutingModule
   ],
   declarations: [
-    CategoriaPesquisaComponent
+    CategoriaPesquisaComponent,
+    NgbdSortableHeader
   ],
   exports: [],
   providers: [
     CategoriaService
-  ]
+  ],
+
 })
 export class CategoriaModule {
 }

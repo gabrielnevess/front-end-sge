@@ -12,8 +12,8 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
             <tr>
-              <th scope="col">código</th>
-              <th scope="col">Nome</th>
+              <th scope="col" sortable="id" (sort)="onSort($event)">#</th>
+              <th scope="col" sortable="name" (sort)="onSort($event)">Nome</th>
             </tr>
             </thead>
             <tbody>

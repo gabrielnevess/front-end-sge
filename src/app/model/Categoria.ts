@@ -22,4 +22,5 @@ export class Categoria {
   set name(value: string) {
     this._name = value;
   }
+
 }
