@@ -86,11 +86,6 @@ export class CategoriaPesquisaComponent implements OnInit {
       .catch(erro => console.log('error: ', erro));
   }
 
-  // aoMudarPagina(event: LazyLoadEvent) {
-  //   const pagina = event.first / event.rows;
-  //   this.pesquisar(pagina);
-  // }
-
   // confirmarExclusao(categoria: any) {
   //   this.confirmation.confirm({
   //     message: 'Tem certeza que deseja excluir?',

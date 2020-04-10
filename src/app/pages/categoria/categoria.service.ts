@@ -4,7 +4,7 @@ import {Categoria} from '../../model/Categoria';
 
 export class CategoriaFiltro {
   pagina = 0;
-  itensPorPagina = 10;
+  itensPorPagina = 2;
 }
 
 @Injectable()
@@ -16,10 +16,12 @@ export class CategoriaService {
   }
 
   pesquisar(filtro: CategoriaFiltro): Promise<any> {
-    const params = new HttpParams();
-
-    params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.itensPorPagina.toString());
+    let params = new HttpParams({
+      fromObject: {
+        offset: filtro.pagina.toString(),
+        limit: filtro.itensPorPagina.toString()
+      }
+    });
 
     return this.httpClient.get(`${this.categoriaUrl}`, {params})
       .toPromise()
@@ -28,7 +30,7 @@ export class CategoriaService {
 
         const resultado = {
           categorias,
-          total: response.totalElements
+          total: response.totalPages
         };
 
         return resultado;

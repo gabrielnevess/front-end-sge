@@ -14,6 +14,7 @@
             <tr>
               <th scope="col" sortable="id" (sort)="onSort($event)">#</th>
               <th scope="col" sortable="name" (sort)="onSort($event)">Nome</th>
+              <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,18 @@
               <td>
                 {{ categoria.name }}
               </td>
+              <td class="text-right">
+                <div ngbDropdown placement="auto">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div ngbDropdownMenu class="dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                  </div>
+                </div>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -31,25 +44,22 @@
         <div class="card-footer py-4">
           <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
+              <!--              <li class="page-item disabled">-->
+              <!--                <a class="page-link" href="javascript:void(0)" tabindex="-1">-->
+              <!--                  <i class="fas fa-angle-left"></i>-->
+              <!--                  <span class="sr-only">Previous</span>-->
+              <!--                </a>-->
+              <!--              </li>-->
+              <li [ngClass]="[filtro.pagina == i ? 'page-item active' : 'page-item']"
+                  *ngFor="let i of totalRegistros | generateRowIndexes">
+                <a class="page-link" (click)="pesquisar(i)">{{(i + 1)}}</a>
               </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
+              <!--              <li class="page-item">-->
+              <!--                <a class="page-link" href="javascript:void(0)">-->
+              <!--                  <i class="fas fa-angle-right"></i>-->
+              <!--                  <span class="sr-only">Next</span>-->
+              <!--                </a>-->
+              <!--              </li>-->
             </ul>
           </nav>
         </div>
