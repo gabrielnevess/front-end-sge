@@ -1,10 +1,11 @@
-import { Component, Directive, EventEmitter, OnInit, Input, Output, QueryList, ViewChildren } from '@angular/core';
+import {Component, Directive, EventEmitter, OnInit, Input, Output, QueryList, ViewChildren} from '@angular/core';
 import {CategoriaFiltro, CategoriaService} from '../categoria.service';
 import {Categoria} from '../../../model/Categoria';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 export type SortColumn = keyof Categoria | '';
 export type SortDirection = 'asc' | 'desc' | '';
-const rotate: {[key: string]: SortDirection} = { 'asc': 'desc', 'desc': '', '': 'asc' };
+const rotate: { [key: string]: SortDirection } = {'asc': 'desc', 'desc': '', '': 'asc'};
 const compare = (v1: string, v2: string) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 export interface SortEvent {
@@ -45,6 +46,7 @@ export class CategoriaPesquisaComponent implements OnInit {
   categoriaAux = [];
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+
   onSort({column, direction}: SortEvent) {
 
     // resetting other headers
@@ -67,6 +69,7 @@ export class CategoriaPesquisaComponent implements OnInit {
 
   constructor(
     private categoriaService: CategoriaService,
+    private spinnerService: NgxSpinnerService
   ) {
   }
 
@@ -76,14 +79,19 @@ export class CategoriaPesquisaComponent implements OnInit {
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
+    this.spinnerService.show();
 
     this.categoriaService.pesquisar(this.filtro)
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.categorias = resultado.categorias;
         this.categoriaAux = resultado.categorias;
+        this.spinnerService.hide();
       })
-      .catch(erro => console.log('error: ', erro));
+      .catch(erro => {
+        console.log('error: ', erro);
+        this.spinnerService.hide();
+      });
   }
 
   // confirmarExclusao(categoria: any) {

@@ -6,13 +6,15 @@ import {CategoriaRoutingModule} from './categoria-routing.module';
 import {CategoriaService} from './categoria.service';
 import {GenerateRowIndexesPipe} from '../../helpers/generate-row-indexes.pipe';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 @NgModule({
   imports: [
     CommonModule,
     CategoriaRoutingModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgxSpinnerModule
   ],
   declarations: [
     CategoriaPesquisaComponent,
