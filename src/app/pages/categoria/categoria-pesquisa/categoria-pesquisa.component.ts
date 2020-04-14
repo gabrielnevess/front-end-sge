@@ -2,6 +2,7 @@ import {Component, Directive, EventEmitter, OnInit, Input, Output, QueryList, Vi
 import {CategoriaFiltro, CategoriaService} from '../categoria.service';
 import {Categoria} from '../../../model/Categoria';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {NotificationService} from '../../../helpers/notification.service';
 
 export type SortColumn = keyof Categoria | '';
 export type SortDirection = 'asc' | 'desc' | '';
@@ -69,11 +70,13 @@ export class CategoriaPesquisaComponent implements OnInit {
 
   constructor(
     private categoriaService: CategoriaService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private toastr: NotificationService
   ) {
   }
 
   ngOnInit() {
+    this.toastr.showSuccess('Hello world!', 'Toastr fun!');
     this.pesquisar(0);
   }
 

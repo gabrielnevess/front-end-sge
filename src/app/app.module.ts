@@ -9,6 +9,9 @@ import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from './app.routing';
 import {ComponentsModule} from './components/components.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {ToastrModule} from 'ngx-toastr';
+import {NotificationService} from './helpers/notification.service';
 
 
 @NgModule({
@@ -19,14 +22,19 @@ import {ComponentsModule} from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
-  providers: [],
+  providers: [
+    NotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
