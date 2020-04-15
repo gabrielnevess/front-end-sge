@@ -12,6 +12,7 @@ import {ComponentsModule} from './components/components.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {ToastrModule} from 'ngx-toastr';
 import {NotificationService} from './helpers/notification.service';
+import { ModalComponent } from './helpers/modal/modal.component';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {NotificationService} from './helpers/notification.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
+    AuthLayoutComponent
   ],
   providers: [
     NotificationService
