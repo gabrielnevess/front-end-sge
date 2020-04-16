@@ -11,9 +11,7 @@ import {AppRoutingModule} from './app.routing';
 import {ComponentsModule} from './components/components.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {ToastrModule} from 'ngx-toastr';
-import {NotificationService} from './helpers/notification.service';
-import { ModalComponent } from './helpers/modal/modal.component';
-
+import {HelpersModule} from './helpers/helpers.module';
 
 @NgModule({
   imports: [
@@ -27,6 +25,7 @@ import { ModalComponent } from './helpers/modal/modal.component';
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    HelpersModule
   ],
   declarations: [
     AppComponent,
@@ -34,7 +33,6 @@ import { ModalComponent } from './helpers/modal/modal.component';
     AuthLayoutComponent
   ],
   providers: [
-    NotificationService
   ],
   bootstrap: [AppComponent]
 })

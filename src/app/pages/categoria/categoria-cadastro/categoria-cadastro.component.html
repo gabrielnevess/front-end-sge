@@ -1,0 +1,56 @@
+<div class="header bg-gradient-warning pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+
+        <ngx-spinner
+          size="medium"
+          type="ball-spin-clockwise"
+          [fullScreen]="false"></ngx-spinner>
+
+        <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
+
+          <div class="row">
+            <div class="col">
+
+              <div class="card-header border-0">
+                <h3 class="mb-0">{{ editando ? 'Edição de' : 'Nova' }} Categoria</h3>
+              </div>
+
+              <div class="card-header border-0">
+                <input
+                  type="text"
+                  class="form-control form-control-alternative"
+                  placeholder="Nome"
+                  formControlName="name">
+                <app-message [control]="formulario.get('name')" error="obrigatoriedade"
+                             text="Informe a categoria"></app-message>
+                <app-message [control]="formulario.get('name')" error="tamanhoMinimo"
+                             text="Mínimo de {{ formulario.get('name').errors?.tamanhoMinimo?.tamanho }} caracteres"></app-message>
+              </div>
+
+              <div class="card-header border-0">
+                <button class="btn btn-success" type="submit" [disabled]="formulario.invalid">
+                  Salvar
+                </button>
+                <button class="btn btn-info" type="button" (click)="novo()">
+                  Novo
+                </button>
+                <a routerLink="/categoria">Voltar para a pesquisa</a>
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

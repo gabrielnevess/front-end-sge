@@ -3,9 +3,11 @@ import {CommonModule} from '@angular/common';
 import {CategoriaPesquisaComponent, NgbdModalConfirm, NgbdSortableHeader} from './categoria-pesquisa/categoria-pesquisa.component';
 import {CategoriaRoutingModule} from './categoria-routing.module';
 import {CategoriaService} from './categoria.service';
-import {GenerateRowIndexesPipe} from '../../helpers/generate-row-indexes.pipe';
 import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {HelpersModule} from '../../helpers/helpers.module';
+import {CategoriaCadastroComponent} from './categoria-cadastro/categoria-cadastro.component';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -14,17 +16,21 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     CategoriaRoutingModule,
     NgbDropdownModule,
     NgxSpinnerModule,
-    NgbModule
+    NgbModule,
+    HelpersModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CategoriaPesquisaComponent,
+    CategoriaCadastroComponent,
     NgbdSortableHeader,
-    GenerateRowIndexesPipe,
     NgbdModalConfirm
   ],
   exports: [],
   providers: [
-    CategoriaService
+    CategoriaService,
+    HelpersModule,
+    FormBuilder
   ]
 })
 export class CategoriaModule {

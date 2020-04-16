@@ -1,18 +1,20 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Categoria} from '../../model/Categoria';
+import {environment} from '../../../environments/environment';
 
 export class CategoriaFiltro {
   pagina = 0;
-  itensPorPagina = 2;
+  itensPorPagina = 5;
 }
 
 @Injectable()
 export class CategoriaService {
 
-  categoriaUrl = 'https://back-end-sge.herokuapp.com/api/category';
+  categoriaUrl = '';
 
   constructor(private httpClient: HttpClient) {
+    this.categoriaUrl = `${environment.apiUrl}/category`;
   }
 
   pesquisar(filtro: CategoriaFiltro): Promise<any> {
@@ -37,12 +39,6 @@ export class CategoriaService {
       });
   }
 
-  listarTodas(): Promise<any> {
-    return this.httpClient.get(this.categoriaUrl)
-      .toPromise()
-      .then((response: any) => response.content);
-  }
-
   excluir(codigo: number): Promise<void> {
     return this.httpClient.delete(`${this.categoriaUrl}/${codigo}`)
       .toPromise()
@@ -50,22 +46,26 @@ export class CategoriaService {
   }
 
   adicionar(categoria: Categoria): Promise<Categoria> {
-    return this.httpClient.post(this.categoriaUrl, JSON.stringify(categoria))
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+
+    return this.httpClient.post(this.categoriaUrl, JSON.stringify(categoria), {headers: headers})
       .toPromise()
-      .then((response: any) => response.content);
+      .then((response: any) => response as Categoria);
   }
 
   atualizar(categoria: Categoria): Promise<Categoria> {
-    return this.httpClient.put(`${this.categoriaUrl}/${categoria.id}`,
-      JSON.stringify(categoria))
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json');
+    return this.httpClient.put(`${this.categoriaUrl}/${categoria.id}`, JSON.stringify(categoria), {headers: headers})
       .toPromise()
-      .then((response: any) => response.content as Categoria);
+      .then(() => null);
   }
 
   buscarPorCodigo(codigo: number): Promise<Categoria> {
     return this.httpClient.get(`${this.categoriaUrl}/${codigo}`)
       .toPromise()
-      .then((response: any) => response.content as Categoria);
+      .then((response: any) => response as Categoria);
   }
 
 }

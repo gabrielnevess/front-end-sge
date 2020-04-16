@@ -2,8 +2,8 @@ import {Component, Directive, EventEmitter, OnInit, Input, Output, QueryList, Vi
 import {CategoriaFiltro, CategoriaService} from '../categoria.service';
 import {Categoria} from '../../../model/Categoria';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {NotificationService} from '../../../helpers/notification.service';
 import {NgbActiveModal, NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NotificationService} from '../../../helpers/notification.service';
 
 export type SortColumn = keyof Categoria | '';
 export type SortDirection = 'asc' | 'desc' | '';
@@ -49,7 +49,7 @@ export class NgbdSortableHeader {
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
-      <button type="button" class="btn btn-danger" (click)="modal.close('Ok')">Ok</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Ok')">Ok</button>
     </div>
   `
 })

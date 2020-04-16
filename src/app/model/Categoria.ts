@@ -2,6 +2,9 @@ export class Categoria {
   private _id: number;
   private _name: string;
 
+  // @ts-ignore
+  constructor();
+
   constructor(id: number, name: string) {
     this._id = id;
     this._name = name;

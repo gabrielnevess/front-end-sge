@@ -1,11 +1,12 @@
 import {Routes, RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CategoriaPesquisaComponent} from './categoria-pesquisa/categoria-pesquisa.component';
+import {CategoriaCadastroComponent} from './categoria-cadastro/categoria-cadastro.component';
 
 const routes: Routes = [
   {path: 'categoria', component: CategoriaPesquisaComponent},
-  // { path: 'categoria/nova', component: CategoriaCadastroComponent },
-  // { path: 'categoria/:codigo', component: CategoriaCadastroComponent }
+  {path: 'categoria/novo', component: CategoriaCadastroComponent},
+  {path: 'categoria/:codigo', component: CategoriaCadastroComponent}
 ];
 
 @NgModule({
